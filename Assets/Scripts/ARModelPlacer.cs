@@ -41,7 +41,6 @@ namespace ARFTest
             planes = GetComponent<ARGroundManager>();
             raycastManager = GetComponent<ARRaycastManager>();
             camera = Camera.main;
-            Offset = new Vector3(0F, 3F, 0F);
         }
 
         public bool PlaceModel()
@@ -71,7 +70,7 @@ namespace ARFTest
 
         public void InstantiateModel(Vector3 position, Quaternion rotation)
         {
-            GameObject model = Instantiate(ModelPrefab, position, rotation);
+            GameObject model = Instantiate(ModelPrefab, position + Offset, rotation);
 
             if (RotateModelToCamera)
                 model.transform.LookAt(new Vector3(
