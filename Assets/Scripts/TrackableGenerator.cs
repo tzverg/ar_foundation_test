@@ -7,6 +7,7 @@ using Lean.Touch;
 public class TrackableGenerator : MonoBehaviour
 {
     private ARModelPlacer modelPlacer;
+
     [SerializeField] private List<GameObject> trackableList;
 
     private new UnityEngine.Camera camera = null;

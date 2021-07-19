@@ -20,7 +20,8 @@ namespace ARFTest
         private TrackableType trackableTypes = TrackableType.Planes;
         [SerializeField]
         private HitIndex hitIndex = HitIndex.Last;
-        
+        [SerializeField] private RaytraceDebug raytraceDebug;
+
 
         private readonly List<ARRaycastHit> hits = new List<ARRaycastHit>();
         private ARGroundManager planes;
@@ -55,6 +56,8 @@ namespace ARFTest
 
             if (raycastManager.Raycast(screenPosition, hits, trackableTypes))
             {
+                raytraceDebug.IncrementRayCounter();
+
                 InstantiateModel(hits[GetHitIndex()].pose.position + Offset, Quaternion.identity);
 
                 if (DisableTrackingAfterPlacing)
