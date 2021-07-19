@@ -14,11 +14,13 @@ namespace ARFTest
         public bool DisablePlanesAfterPlacing = true;
         public bool DisableTrackingAfterPlacing = false;
         public bool RotateModelToCamera = true;
+        public Vector3 Offset;
 
         [SerializeField]
         private TrackableType trackableTypes = TrackableType.Planes;
         [SerializeField]
         private HitIndex hitIndex = HitIndex.Last;
+        
 
         private readonly List<ARRaycastHit> hits = new List<ARRaycastHit>();
         private ARGroundManager planes;
@@ -39,6 +41,7 @@ namespace ARFTest
             planes = GetComponent<ARGroundManager>();
             raycastManager = GetComponent<ARRaycastManager>();
             camera = Camera.main;
+            Offset = new Vector3(0F, 3F, 0F);
         }
 
         public bool PlaceModel()
@@ -53,7 +56,7 @@ namespace ARFTest
 
             if (raycastManager.Raycast(screenPosition, hits, trackableTypes))
             {
-                InstantiateModel(hits[GetHitIndex()].pose.position, Quaternion.identity);
+                InstantiateModel(hits[GetHitIndex()].pose.position + Offset, Quaternion.identity);
 
                 if (DisableTrackingAfterPlacing)
                     planes.ToggleTracking(false);

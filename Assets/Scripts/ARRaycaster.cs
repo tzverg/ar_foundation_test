@@ -28,14 +28,14 @@ namespace ARFTest
 
         private void Update()
         {
-            if (raycastButton.IsPressed)
-            {
-                if (RaycastFromCenter())
-                {
-                    raytraceDebug.IncrementRayCounter();
-                    trackableGenerator.InstantiateModelToThePosition(screenCenter);
-                }
-            }
+            //if (raycastButton.IsPressed)
+            //{
+            //    if (RaycastFromCenter())
+            //    {
+            //        raytraceDebug.IncrementRayCounter();
+            //        trackableGenerator.InstantiateModelToThePosition(screenCenter);
+            //    }
+            //}
         }
 
         private bool RaycastFromCenter()

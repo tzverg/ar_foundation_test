@@ -352,7 +352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 254470997}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1659859605}
+        m_TargetAssemblyTypeName: TrackableGenerator, Assembly-CSharp
+        m_MethodName: InstantiateModelToTheCenterOfTheScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &254470997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,7 +1023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &811886216
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,7 +1434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1083163944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1652,7 +1664,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1354141930}
   - component: {fileID: 1354141926}
-  - component: {fileID: 1354141929}
   - component: {fileID: 1354141928}
   - component: {fileID: 1354141927}
   - component: {fileID: 1354141931}
@@ -1737,24 +1748,6 @@ MonoBehaviour:
   m_AutoFocus: 1
   m_LightEstimation: 0
   m_FacingDirection: 1
---- !u!114 &1354141929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354141925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 0
-  m_PoseSource: 2
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_UseRelativeTransform: 0
 --- !u!4 &1354141930
 Transform:
   m_ObjectHideFlags: 0
@@ -1872,7 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 4776765576899091622, guid: 3738bd65ede154463b2c35064b9e5fdb,
+  m_PlanePrefab: {fileID: 6989528580195574575, guid: 08423e560cc163d46a9756f86423f0f5,
     type: 3}
   m_DetectionMode: 1
 --- !u!114 &1659859603
@@ -1899,11 +1892,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e25c0071d1a4d544be3f0b186292537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModelPrefab: {fileID: 0}
+  ModelPrefab: {fileID: 618266430693027466, guid: 282884d4b97cc2742bfee9d083ac30c5,
+    type: 3}
   MultiplePlacing: 1
   DisablePlanesAfterPlacing: 0
   DisableTrackingAfterPlacing: 0
   RotateModelToCamera: 1
+  Offset: {x: 0, y: 0, z: 0}
   trackableTypes: 1
   hitIndex: 0
 --- !u!114 &1659859605

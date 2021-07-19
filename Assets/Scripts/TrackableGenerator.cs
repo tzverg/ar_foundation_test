@@ -10,6 +10,7 @@ public class TrackableGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> trackableList;
 
     private new UnityEngine.Camera camera = null;
+    private Vector2 screenCenter;
 
     private void Awake()
     {
@@ -23,14 +24,24 @@ public class TrackableGenerator : MonoBehaviour
         LeanTouch.OnFingerTap -= HandleClick;
     }
 
-    public void InstantiateModelToThePosition(Vector2 newModelPosition)
+    public void InstantiateModelToTheCenterOfTheScreen()
     {
-        if (Physics.Raycast(camera.ScreenPointToRay(newModelPosition), out RaycastHit raycastHit))
+        CreateRandomTrackableObject();
+
+        if (modelPlacer.ModelPrefab != null)
         {
-            if (Application.isEditor
-                     && modelPlacer.ModelPrefab != null)
+            if (Application.isEditor)
             {
-                modelPlacer.InstantiateModel(raycastHit.point, Quaternion.identity);
+                screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+
+                if (Physics.Raycast(camera.ScreenPointToRay(screenCenter), out RaycastHit raycastHit))
+                {
+                    modelPlacer.InstantiateModel(raycastHit.point, Quaternion.identity);
+                }
+            }
+            else
+            {
+                modelPlacer.PlaceModel();
             }
         }
     }
