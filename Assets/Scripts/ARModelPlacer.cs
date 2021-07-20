@@ -13,7 +13,6 @@ namespace ARFTest
         public bool MultiplePlacing = true;
         public bool DisablePlanesAfterPlacing = true;
         public bool DisableTrackingAfterPlacing = false;
-        public bool AddAnchorAfterPlacing = true;
         public bool RotateModelToCamera = true;
         public Vector3 Offset;
 
@@ -43,11 +42,6 @@ namespace ARFTest
             planes = GetComponent<ARGroundManager>();
             raycastManager = GetComponent<ARRaycastManager>();
             camera = Camera.main;
-        }
-
-        private void AddAnchor(GameObject go)
-        {
-            go.AddComponent<ARAnchor>();
         }
 
         public bool PlaceModel()
@@ -86,11 +80,6 @@ namespace ARFTest
                     camera.transform.position.x,
                     model.transform.position.y,
                     camera.transform.position.z));
-
-            if (AddAnchorAfterPlacing)
-            {
-                AddAnchor(model);
-            }
 
             Placed?.Invoke(model);
         }
