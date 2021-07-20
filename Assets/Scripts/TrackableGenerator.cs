@@ -9,6 +9,7 @@ public class TrackableGenerator : MonoBehaviour
     private ARModelPlacer modelPlacer;
 
     [SerializeField] private List<GameObject> trackableList;
+    [SerializeField] private TrackableSelector parentController;
 
     private new UnityEngine.Camera camera = null;
     private Vector2 screenCenter;
@@ -17,10 +18,14 @@ public class TrackableGenerator : MonoBehaviour
     {
         camera = UnityEngine.Camera.main;
         modelPlacer = GetComponent<ARModelPlacer>();
+    }
+
+    private void OnEnable()
+    {
         LeanTouch.OnFingerTap += HandleClick;
     }
 
-    public void OnDestroy()
+    private void OnDisable()
     {
         LeanTouch.OnFingerTap -= HandleClick;
     }
@@ -56,27 +61,27 @@ public class TrackableGenerator : MonoBehaviour
         {
             GameObject selectedGameObject = raycastHit.collider.gameObject;
 
-            //if (selectedGameObject.CompareTag("AREffect"))
-            //    parentController.SelectObject(selectedGameObject);
-            if (Application.isEditor
+            CreateRandomTrackableObject();
+
+            if (selectedGameObject.GetComponent<TrackableObjectController>() != null)
+            {
+                if (!parentController.selected)
+                {
+                    parentController.SelectObject(selectedGameObject);
+                }
+                else
+                {
+                    parentController.DeselectObject();
+                }
+            }
+            else if (Application.isEditor
                      //&& selectedGameObject.CompareTag("ARPlane")
                      && modelPlacer.ModelPrefab != null)
-                modelPlacer.InstantiateModel(raycastHit.point, Quaternion.identity);
-            // Uncomment if we need placing by tab on free space.
-            /*else if (selectedGameObject.CompareTag("ARPlane")
-                     && LeanTouch.Fingers.Count == 1
-                     && LeanTouch.Fingers[0].SwipeScreenDelta.magnitude < 30
-                     && arModelPlacer.ModelPrefab != null)
             {
-                if (Application.isEditor)
-                    arModelPlacer.InstantiateModel(raycastHit.point, Quaternion.identity);
-                else
-                    arModelPlacer.PlaceModel(leanFinger.ScreenPosition);
-            }*/
-            //else
-            //    parentController.UnselectObject();
+                modelPlacer.InstantiateModel(raycastHit.point, Quaternion.identity);
+            }
         }
-        //else parentController.UnselectObject();
+        else parentController.DeselectObject();
     }
 
     public void CreateRandomTrackableObject()

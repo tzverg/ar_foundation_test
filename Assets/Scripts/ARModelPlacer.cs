@@ -20,6 +20,7 @@ namespace ARFTest
         private TrackableType trackableTypes = TrackableType.Planes;
         [SerializeField]
         private HitIndex hitIndex = HitIndex.Last;
+        [SerializeField] private Transform parentController;
         [SerializeField] private RaytraceDebug raytraceDebug;
 
 
@@ -73,7 +74,7 @@ namespace ARFTest
 
         public void InstantiateModel(Vector3 position, Quaternion rotation)
         {
-            GameObject model = Instantiate(ModelPrefab, position + Offset, rotation);
+            GameObject model = Instantiate(ModelPrefab, position + Offset, rotation, parentController);
 
             if (RotateModelToCamera)
                 model.transform.LookAt(new Vector3(
