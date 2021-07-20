@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Name: Standalone Providers
   m_EditorClassIdentifier: 
   m_RequiresSettingsUpdate: 0
-  m_AutomaticLoading: 0
-  m_AutomaticRunning: 0
+  m_AutomaticLoading: 1
+  m_AutomaticRunning: 1
   m_Loaders:
   - {fileID: 11400000, guid: 5c220742bc1f31444a08cc332ea45814, type: 2}
 --- !u!114 &1009030276301525555
@@ -89,9 +89,10 @@ MonoBehaviour:
   m_Name: iPhone Providers
   m_EditorClassIdentifier: 
   m_RequiresSettingsUpdate: 0
-  m_AutomaticLoading: 0
-  m_AutomaticRunning: 0
-  m_Loaders: []
+  m_AutomaticLoading: 1
+  m_AutomaticRunning: 1
+  m_Loaders:
+  - {fileID: 11400000, guid: de0ea855f920d4e3a8db461dc3454566, type: 2}
 --- !u!114 &8743287480497168641
 MonoBehaviour:
   m_ObjectHideFlags: 0
